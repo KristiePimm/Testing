@@ -69,4 +69,149 @@
   }
 
   button {
-    wi
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    font-weight:600;
+    margin-top:24px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#4a6bfd;
+    color:white;
+    transition:0.2s ease;
+  }
+  button:hover {
+    background:#3451e0;
+  }
+
+  .back {
+    background:#e4e4e4;
+    color:#222;
+    margin-top:10px;
+  }
+
+  input {
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    margin-top:8px;
+  }
+
+  label {
+    display:block;
+    margin-top:16px;
+    font-size:14px;
+    color:#444;
+  }
+
+  .checkbox {
+    margin-right:6px;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Screen 1: Intro -->
+<div id="screen1" class="screen active">
+  <h1>Confirm your car subscription</h1>
+
+  <div class="car-card">
+    <div class="car-img">Car Image Placeholder</div>
+
+    <div class="spec-row"><strong>Model:</strong> <span>Placeholder GT Premium</span></div>
+    <div class="spec-row"><strong>Gearbox:</strong> <span>Automatic</span></div>
+    <div class="spec-row"><strong>Fuel:</strong> <span>Electric</span></div>
+    <div class="spec-row"><strong>Range:</strong> <span>420 km</span></div>
+    <div class="spec-row"><strong>Mileage:</strong> <span>12 000 km / year</span></div>
+    <div class="spec-row"><strong>Delivery:</strong> <span>2–4 weeks</span></div>
+    <div class="spec-row" style="margin-top:12px;font-size:18px;">
+      <strong>Price:</strong> <span>4 990 kr / month</span>
+    </div>
+  </div>
+
+  <p style="margin-top:16px;">You will identify yourself with BankID to continue the process.</p>
+
+  <button onclick="goTo('screen2')">Start with BankID</button>
+</div>
+
+<!-- Screen 2: Personal number -->
+<div id="screen2" class="screen">
+  <h1>Identify yourself</h1>
+  <label>Personal number</label>
+  <input placeholder="YYYYMMDDNNNN">
+
+  <label><input type="checkbox" class="checkbox">I consent to data processing</label>
+
+  <button onclick="goTo('screen3')">Continue to BankID</button>
+  <button class="back" onclick="goTo('screen1')">Back</button>
+</div>
+
+<!-- Screen 3: BankID -->
+<div id="screen3" class="screen">
+  <h1>Open your BankID app</h1>
+  <p>Request sent. Waiting for confirmation...</p>
+
+  <button onclick="goTo('screen4')">Simulate Success</button>
+  <button class="back" onclick="goTo('screen2')">Cancel</button>
+</div>
+
+<!-- Screen 4: Credit decision -->
+<div id="screen4" class="screen">
+  <h1>You’re approved 🎉</h1>
+  <p>Credit check completed via <strong>Signa Finance Provider</strong>.</p>
+
+  <button onclick="goTo('screen5')">Continue</button>
+</div>
+
+<!-- Screen 5: Contact details -->
+<div id="screen5" class="screen">
+  <h1>Your contact details</h1>
+
+  <label>Email</label>
+  <input placeholder="you@example.com">
+
+  <label>Phone number</label>
+  <input placeholder="+47 000 00 000">
+
+  <button onclick="goTo('screen6')">Continue</button>
+  <button class="back" onclick="goTo('screen4')">Back</button>
+</div>
+
+<!-- Screen 6: Review & sign -->
+<div id="screen6" class="screen">
+  <h1>Review & Confirm</h1>
+
+  <div class="car-card">
+    <div class="car-img">Car Summary</div>
+    <div class="spec-row"><strong>Model:</strong> <span>Placeholder GT Premium</span></div>
+    <div class="spec-row"><strong>Price:</strong> <span>4 990 kr / month</span></div>
+  </div>
+
+  <label><input type="checkbox" class="checkbox">I accept vendor terms</label>
+  <label><input type="checkbox" class="checkbox">I accept SIGNA privacy policy</label>
+
+  <button onclick="goTo('screen7')">Sign & Send</button>
+  <button class="back" onclick="goTo('screen5')">Back</button>
+</div>
+
+<!-- Screen 7: Confirmation -->
+<div id="screen7" class="screen">
+  <h1>Request sent</h1>
+  <p>Your verified subscription request has been delivered to the vendor.</p>
+
+  <button onclick="goTo('screen1')">Back to start</button>
+</div>
+
+<script>
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
