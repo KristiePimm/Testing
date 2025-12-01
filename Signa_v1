@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SIGNA Prototype</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#f4f4f4; margin:0; padding:0;}
+  .screen { display:none; padding:40px; max-width:500px; margin:auto; background:white; margin-top:40px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+  .active { display:block; }
+  h1 { font-size:24px; margin-bottom:20px; }
+  button { padding:12px 18px; font-size:16px; margin-top:20px; border:none; border-radius:6px; cursor:pointer; background:#4a6bfd; color:white; }
+  .back { background:#ddd; color:#000; margin-left:10px; }
+  .placeholder-img { width:100%; height:160px; background:#ccc; border-radius:8px; margin-bottom:20px; display:flex; justify-content:center; align-items:center; font-size:20px; color:#666; }
+  input { width:100%; padding:12px; margin-top:10px; border:1px solid #ccc; border-radius:6px; font-size:16px; }
+  label { display:block; margin-top:15px; }
+  .checkbox { margin-right:8px; }
+</style>
+</head>
+<body>
+
+<!-- Screen 1: Intro -->
+<div id="screen1" class="screen active">
+  <h1>Confirm your car subscription</h1>
+  <div class="placeholder-img">Car Image Placeholder</div>
+  <p><strong>Vehicle:</strong> Placeholder Model</p>
+  <p><strong>Price:</strong> 4 990 kr / month</p>
+  <p>You will identify yourself with BankID to continue.</p>
+  <button onclick="goTo('screen2')">Start with BankID</button>
+</div>
+
+<!-- Screen 2: Personal number -->
+<div id="screen2" class="screen">
+  <h1>Identify yourself</h1>
+  <label>Personal number</label>
+  <input placeholder="YYYYMMDDNNNN">
+  <label><input type="checkbox" class="checkbox">I consent to data processing</label>
+  <button onclick="goTo('screen3')">Continue to BankID</button>
+  <button class="back" onclick="goTo('screen1')">Back</button>
+</div>
+
+<!-- Screen 3: BankID -->
+<div id="screen3" class="screen">
+  <h1>Open your BankID app</h1>
+  <p>Waiting for confirmation…</p>
+  <button onclick="goTo('screen4')">Simulate Success</button>
+  <button class="back" onclick="goTo('screen2')">Cancel</button>
+</div>
+
+<!-- Screen 4: Credit decision -->
+<div id="screen4" class="screen">
+  <h1>You’re approved 🎉</h1>
+  <p>Credit check completed via Signa Finance Provider.</p>
+  <button onclick="goTo('screen5')">Continue</button>
+</div>
+
+<!-- Screen 5: Contact details -->
+<div id="screen5" class="screen">
+  <h1>Your contact details</h1>
+  <label>Email</label>
+  <input placeholder="you@example.com">
+  <label>Phone number</label>
+  <input placeholder="+47 000 00 000">
+  <button onclick="goTo('screen6')">Continue</button>
+  <button class="back" onclick="goTo('screen4')">Back</button>
+</div>
+
+<!-- Screen 6: Review & sign -->
+<div id="screen6" class="screen">
+  <h1>Review & Confirm</h1>
+  <div class="placeholder-img">Car Summary</div>
+  <p><strong>Name:</strong> Retrieved from BankID</p>
+  <p><strong>Price:</strong> 4 990 kr/month</p>
+  <label><input type="checkbox" class="checkbox">Accept vendor terms</label>
+  <label><input type="checkbox" class="checkbox">Accept SIGNA privacy policy</label>
+  <button onclick="goTo('screen7')">Sign & Send</button>
+  <button class="back" onclick="goTo('screen5')">Back</button>
+</div>
+
+<!-- Screen 7: Confirmation -->
+<div id="screen7" class="screen">
+  <h1>Request sent</h1>
+  <p>Your verified order has been sent to the vendor.</p>
+  <p>They will contact you shortly.</p>
+  <button onclick="goTo('screen1')">Back to Start</button>
+</div>
+
+<script>
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
